@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # ----------------------------------------------------------------------------
+  # Database Service (PostgreSQL)
+  # ----------------------------------------------------------------------------
+  db:
+    image: postgres:15-alpine
+    container_name: peoplevision-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: peoplevision
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d peoplevision"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ----------------------------------------------------------------------------
+  # FastAPI API Service (Backend Vision Processing Loop + REST endpoints)
+  # ----------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: peoplevision-api
+    restart: always
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    environment:
+      - LOG_LEVEL=INFO
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/peoplevision
+      - CAMERA_SOURCE=data/test_video.mp4  # Default inside Docker; see README on mounting webcams or video files
+      - IS_VIDEO_FILE=true                 # Run video in loop inside docker to simulate camera feed
+      - YOLO_MODEL=yolov8n.pt
+      - DEVICE=cpu
+      - CONFIDENCE_THRESHOLD=0.4
+      - LINE_START_X_PCT=0.0
+      - LINE_START_Y_PCT=0.5
+      - LINE_END_X_PCT=1.0
+      - LINE_END_Y_PCT=0.5
+      - API_PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      # Map the data folder to allow video file input inside the container
+      - ./data:/workspace/data
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ----------------------------------------------------------------------------
+  # Streamlit Dashboard Service (Frontend Visualization UI)
+  # ----------------------------------------------------------------------------
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: peoplevision-dashboard
+    restart: always
+    command: streamlit run dashboard/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+    environment:
+      - API_URL=http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
