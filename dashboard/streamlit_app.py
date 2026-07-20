@@ -191,7 +191,7 @@ with col_feed:
     st.subheader("Live Processing Stream")
     # Stream the MJPEG video feed URL from the API
     video_url = f"{logger_url}/video_feed"
-    st.image(video_url, caption="Real-time object tracking feed", use_column_width=True)
+    st.image(video_url, caption="Real-time object tracking feed", use_container_width=True)
 
 # Right Column - Metrics Cards
 with col_metrics:

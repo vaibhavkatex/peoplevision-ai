@@ -47,8 +47,8 @@ class YoloDetector:
             sv.Detections: Filtered supervision Detections object containing bounding boxes,
                            class IDs, and confidence scores.
         """
-        # Run inference (verbose=False to avoid cluttering log stdout)
-        results = self.model(frame, verbose=False)[0]
+        # Run inference at 320px resolution for 3x speedup on CPU
+        results = self.model(frame, imgsz=320, verbose=False)[0]
 
         # Convert Ultralytics results to Supervision Detections
         detections = sv.Detections.from_ultralytics(results)
