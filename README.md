@@ -12,10 +12,10 @@ The system features a **FastAPI REST API** backend running the real-time process
 ---
 
 ## Application
-
-![Working Ui](Assets/Screenshot 2026-07-20 210441.png)
-
-![Prediction](Assets/Screenshot 2026-07-20 210507.png)
+<img src="Assets/Screenshot 2026-07-20 210441.png
+" width="700">
+<img src="Assets/Screenshot 2026-07-20 210507.png
+" width="700">
 
 graph TD
     A[Camera Stream / USB / RTSP / File] -->|OpenCV Frames| B[Camera Stream Thread]
