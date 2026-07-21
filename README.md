@@ -12,20 +12,8 @@ The system features a **FastAPI REST API** backend running the real-time process
 ---
 
 ## Application
-<a href="https://ibb.co/p68ywhgp"><img src="https://i.ibb.co/p68ywhgp/Screenshot-2026-07-20-210507.png" alt="Screenshot-2026-07-20-210507" border="0"></a> <a href="https://ibb.co/K4wNRc3"><img src="https://i.ibb.co/K4wNRc3/Screenshot-2026-07-20-210441.png" alt="Screenshot-2026-07-20-210441" border="0"></a>
 
-graph TD
-    A[Camera Stream / USB / RTSP / File] -->|OpenCV Frames| B[Camera Stream Thread]
-    B -->|Thread-safe Read| C[FastAPI Background Loop]
-    C -->|Frame| D[YOLO Object Detector]
-    D -->|Person Detections| E[ByteTrack Tracker]
-    E -->|Tracked IDs & Bounding Boxes| F[People Counter Line Crossing]
-    F -->|Trigger Crossings| G[(PostgreSQL / SQLite Database)]
-    F -->|Draw Overlays & Stats| H[Annotated Frame Buffer]
-    I[Streamlit Dashboard] -->|MJPEG Live Stream| H
-    I -->|Fetch Stats / Control Settings| J[FastAPI endpoints REST API]
-    J -->|Query Logs| G
-```
+<a href="https://ibb.co/p68ywhgp"><img src="https://i.ibb.co/p68ywhgp/Screenshot-2026-07-20-210507.png" alt="Screenshot-2026-07-20-210507" border="0"></a> <a href="https://ibb.co/K4wNRc3"><img src="https://i.ibb.co/K4wNRc3/Screenshot-2026-07-20-210441.png" alt="Screenshot-2026-07-20-210441" border="0"></a>
 
 ---
 
