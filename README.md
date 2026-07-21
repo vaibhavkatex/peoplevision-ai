@@ -14,7 +14,7 @@ The system features a **FastAPI REST API** backend running the real-time process
 ## Application
 
 <p align="center">
-  <img src="https://ibb.co/p68ywhgp" width="800">
+  <img src="[https://ibb.co/p68ywhgp](https://i.ibb.co/twtXKLS5/Screenshot-2026-07-20-210507.png)" width="800">
 </p>
 
 ## Prediction Result
