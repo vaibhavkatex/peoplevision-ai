@@ -14,13 +14,13 @@ The system features a **FastAPI REST API** backend running the real-time process
 ## Application
 
 <p align="center">
-  <img src="[images/app.png](https://github.com/vaibhavkatex/peoplevision-ai/blob/main/Working%20Images%20%26%20Videos/Screenshot%202026-07-20%20210441.png)" width="700">
+  <img src="[images/home.png](https://github.com/vaibhavkatex/peoplevision-ai/blob/main/Working%20Images%20%26%20Videos/Screenshot%202026-07-20%20210441.png)" width="800">
 </p>
 
 ## Prediction Result
 
 <p align="center">
-  <img src="images/result.png" width="700">
+  <img src="images/home.png" width="800">
 </p>
 
 ```mermaid
