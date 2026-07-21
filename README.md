@@ -11,6 +11,18 @@ The system features a **FastAPI REST API** backend running the real-time process
 
 ---
 
+## Application
+
+<p align="center">
+  <img src="images/app.png" width="700">
+</p>
+
+## Prediction Result
+
+<p align="center">
+  <img src="images/result.png" width="700">
+</p>
+
 ```mermaid
 graph TD
     A[Camera Stream / USB / RTSP / File] -->|OpenCV Frames| B[Camera Stream Thread]
